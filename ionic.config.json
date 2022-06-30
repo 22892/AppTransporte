@@ -1,0 +1,7 @@
+{
+  "name": "app-jhon",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
