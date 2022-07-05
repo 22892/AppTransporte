@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>HORARIOS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="listRutas.length>0; else Norutas">
+    <ion-scroll scrollX="true">
+      <ion-list >
+        <ion-item *ngFor="let ruta of listRutas; let i = index;" button (click)="openModalRuta(i)">
+
+          <ion-grid>
+            <ion-row >
+              <ion-col size="10">
+                <ion-label style="font-size: 24px;">{{ruta.nombre}}</ion-label>
+              </ion-col>
+             
+            </ion-row>
+          
+
+            <ion-row >
+
+              <ion-col size="10">
+
+                  <div *ngIf="ruta.control.length>0; else noTransporte">
+
+                    <ion-grid>
+                      <ion-row >
+                        <ion-col size="1">
+                          <ion-icon name="alarm-outline"></ion-icon>
+                        </ion-col>
+                        <ion-col >
+                          <!--{{ruta.control[ruta.control.length-1].hora}} | {{ruta.codigo | cronometro: ruta.control[ruta.control.length-1].codigo_transporte }} -->
+                          {{ruta.control[ruta.control.length-1].hora}} | Hace {{ruta.control[ruta.control.length-1].minutos}} minuto {{ruta.control[ruta.control.length-1].segundos}} segundos
+                          <!--{{ruta.control[ruta.control.length-1].hora}} | Hace {{minutos}} minutos {{segundos}} segundos-->
+                        
+                        </ion-col>
+                       
+                      </ion-row>
+
+                      <ion-row >
+                        <ion-col size="1">
+                          <ion-icon name="car-outline"></ion-icon>
+                        </ion-col>
+                        <ion-col >
+                          
+                          <ion-badge color="{{ruta.control[ruta.control.length-1].color}}">{{ruta.control[ruta.control.length-1].transporte}}</ion-badge>
+                          <a class="head-example"  [ngStyle] = "{ 'background-color': ruta.control[ruta.control.length-1].color }" >{{ruta.control[ruta.control.length-1].linea}}</a> 
+                        </ion-col>
+                       
+                      </ion-row>
+  
+                      
+                    </ion-grid>
+                  </div>
+
+                <ng-template #noTransporte>
+                  <ion-badge style="font-size: 10px;" color="primary">Sin Información de horario. Toca para agregar</ion-badge>        
+
+                </ng-template>
+
+
+              </ion-col>
+             
+            </ion-row>
+
+          </ion-grid>
+
+        </ion-item>
+        
+      </ion-list>
+  
+    </ion-scroll>
+  
+  </div>
+
+
+
+
+  <ng-template #Norutas>
+    <div class="noexisteDatos">
+     
+      <ion-badge color="primary">NO TIENE RUTAS EXISTENTES</ion-badge>
+
+    </div>
+  </ng-template>
+
+
+</ion-content>

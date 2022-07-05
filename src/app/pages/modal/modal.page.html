@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ ruta.nombre }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label>Seleccione Transporte</ion-label>
+    <ion-select class="custom-options" [(ngModel)]="selectTransporte" okText="Agrgar" cancelText="Cancelar">
+
+      <ion-select-option *ngFor="let transporte of listTipoTransporte" [value]="transporte">{{transporte.nombre}}</ion-select-option>
+      
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Número/Linea</ion-label>
+    <ion-input type="number" placeholder="Numero / Linea" [(ngModel)]="numeroTransporte"></ion-input>
+  </ion-item>
+
+
+  <div class="container">
+
+    <div class="btn-holder">
+
+      <ion-button  size="small" color="primary" (click)="cancelar()" >
+        Cancelar
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+      <ion-button   size="small" color="primary" (click)="agregarTransporte()" >
+        Agregar
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+
+    </div>
+  
+  </div>
+
+  
+
+</ion-content>
